@@ -1,0 +1,36 @@
+<!doctype html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Cortex · 问问你自己的过去</title>
+<style>
+*{box-sizing:border-box;margin:0}body{font-family:-apple-system,"PingFang SC","Noto Sans SC","Microsoft YaHei",sans-serif;color:#111;background:#fff;line-height:1.6}
+.w{max-width:1120px;margin:0 auto;padding:0 24px}nav{position:sticky;top:0;background:#fffc;backdrop-filter:blur(10px);border-bottom:1px solid #eee;z-index:9}
+nav .w{display:flex;align-items:center;justify-content:space-between;height:60px}.logo{font-weight:700;font-size:18px}nav a{color:#555;text-decoration:none;margin-left:22px;font-size:14px}
+.tag{display:inline-block;font-size:13px;padding:4px 12px;border-radius:99px;background:#f2f2f2;color:#555}
+.hero{text-align:center;padding:90px 24px 40px}.hero h1{font-size:clamp(36px,6vw,64px);letter-spacing:-1px;margin:18px 0 12px}.hero p{color:#666;font-size:19px}
+.shot{display:block;width:100%;border-radius:16px;box-shadow:0 30px 80px -20px #0003;border:1px solid #eee}
+.hero .shot{margin-top:50px}
+section{padding:100px 0}h2{font-size:clamp(28px,4vw,40px);letter-spacing:-.5px;margin-bottom:10px}.sub{color:#666;margin-bottom:40px}
+.cases{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}.case{border:1px solid #eee;border-radius:16px;padding:22px;background:#fafafa}
+.q{font-weight:600;background:#111;color:#fff;display:inline-block;padding:8px 14px;border-radius:14px 14px 4px 14px;font-size:15px}.a{margin-top:14px;color:#444;font-size:14.5px}
+.row{display:grid;grid-template-columns:1fr 1.4fr;gap:60px;align-items:center}.row.r{grid-template-columns:1.4fr 1fr}.row.r .t{order:2}
+.gray{background:#f6f6f4}.priv{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}.priv div{background:#fff;border-radius:16px;padding:26px}.priv b{display:block;font-size:20px;margin:10px 0 4px}.ic{font-size:30px}
+.dl{text-align:center}.dl .btn{display:inline-block;margin-top:24px;padding:14px 30px;border-radius:99px;background:#e9e9e9;color:#888;font-weight:600}
+@media(max-width:800px){.cases,.priv{grid-template-columns:1fr}.row,.row.r{grid-template-columns:1fr;gap:28px}.row.r .t{order:0}nav a{display:none}section{padding:64px 0}.hero{padding:56px 24px 20px}}
+</style></head><body>
+<nav><div class="w"><span class="logo">◭ Cortex</span><span><a href="#cases">能问什么</a><a href="#priv">隐私</a><a href="#dl">下载</a></span></div></nav>
+<header class="hero w"><span class="tag">本地运行 · 尚未正式发布</span><h1>问问你自己的过去</h1><p>聊天、日程、认识的人，都在你电脑里。Cortex 帮你记住，随时问。</p><img class="shot" src="../assets/ask-contact.webp" alt="Cortex 对话界面"></header>
+<section id="cases"><div class="w"><h2>你会这样问它</h2><p class="sub">以下为示例数据</p><div class="cases">
+<div class="case"><span class="q">我最近和林可聊了啥？</span><p class="a">杯套那单在收尾，暖色版周五前要印；她还问下个月外卖包装你有没有空。</p></div>
+<div class="case"><span class="q">这周有什么死线？</span><p class="a">星河咖啡 logo 定稿，周五 17:00 截止，只差导出规范。</p></div>
+<div class="case"><span class="q">上次报价是多少？</span><p class="a">07-08 那次按 3 天工时报的，记录在和客户的聊天里。</p></div>
+<div class="case"><span class="q">我昨天都忙了啥？</span><p class="a">首页提案发出、客户回了两条意见，打车 38 元已入账。</p></div>
+<div class="case"><span class="q">谁欠我回复？</span><p class="a">林可周一 10 点的电话还没确认。</p></div>
+<div class="case"><span class="q">我总犯的错是什么？</span><p class="a">连着两次报价前没翻历史工时——今天先查一下。</p></div>
+</div></div></section>
+<section class="gray"><div class="w row"><div class="t"><h2>早上睁眼，先看一张卡</h2><p class="sub">死线、毛病、主线。过去 24 小时的重要消息，AI 已经替你挑好。</p></div><img class="shot" src="../assets/today-daily-card.webp" alt="早扫卡"></div></section>
+<section><div class="w row r"><div class="t"><h2>记得你认识的每个人</h2><p class="sub">谁是谁、聊过什么、你答应过什么。</p></div><img class="shot" src="../assets/mockup-memory.webp" alt="记忆"></div></section>
+<section class="gray"><div class="w row"><div class="t"><h2>一天在电脑前怎么过的</h2><p class="sub">可选的屏幕记录，自动整理成时间线。</p></div><img class="shot" src="../assets/mockup-screen-day.webp" alt="屏幕日志" style="max-width:480px;margin:auto"></div></section>
+<section id="priv"><div class="w"><h2>存在本机 · 模型自选 · 随时删除</h2><p class="sub">聊天记录、记忆、联系人，都存在你自己的硬盘里。</p><div class="priv">
+<div style="background:#f6f6f4"><span class="ic">💻</span><b>本机运行</b>数据库在你自己的硬盘里</div>
+<div style="background:#f6f6f4"><span class="ic">🔑</span><b>模型你来选</b>本地模型或自己的 API Key</div>
+<div style="background:#f6f6f4"><span class="ic">🗑️</span><b>随时删除</b>删掉文件夹，就什么都不剩</div></div></div></section>
+<section id="dl" class="gray dl"><div class="w"><h2>Cortex 尚未正式发布</h2><p class="sub" style="margin:0">我们正在打磨。发布后会出现在这里。</p><span class="btn">敬请期待</span></div></section>
+</body></html>

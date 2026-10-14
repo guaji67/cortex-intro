@@ -9,10 +9,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900;1,400;1,700&family=Source+Serif+4:ital,opsz,wght@0,8..60,300;0,8..60,400;0,8..60,500;0,8..60,600;1,8..60,400&family=IBM+Plex+Mono:wght@300;400;500;600&family=Noto+Serif+SC:wght@300;400;500;600;700;900&family=Noto+Sans+SC:wght@300;400;500;700;900&display=swap" rel="stylesheet">
 <style>
   :root{
-    /* ============ 主题色(默认:🖋 墨水经典) ============
-       切换主题:从 references/themes.md 复制对应的 :root 块
-       整体替换这几行(--ink / --ink-rgb / --paper / --paper-rgb)
-       其他地方散落的 rgba() 都走 var(--ink-rgb) / var(--paper-rgb),无需逐处改 */
+    /* ============ 主题色 ============ */
     --ink:#1f1a14;
     --ink-rgb:31,26,20;
     --paper:#f0e6d2;
@@ -195,11 +192,6 @@
   body.light-bg #nav .dot.active{background:rgba(var(--ink-rgb),.9)}
   #hint{position:fixed;bottom:3vh;right:3vw;z-index:30;font-family:var(--mono);font-size:10px;letter-spacing:.2em;text-transform:uppercase;opacity:.4;mix-blend-mode:difference;color:#aaa}
 
-  /* ============================================================
-     ============ LAYOUTS API · 面向 agent 的类（v2）============
-     所有 layouts.md 中的骨架都基于下面这套命名。
-     如果你在 layouts.md 里看到某个类，它必须在下面有定义。
-     ============================================================ */
 
   /* ---------- .frame：每页主内容容器 ---------- */
   .frame{flex:1;display:flex;flex-direction:column;min-height:0;overflow:hidden}
@@ -382,7 +374,7 @@
     opacity:.72;
   }
 
-  /* ---------- 网格（layouts.md 所用） ---------- */
+  /* ---------- 网格 ---------- */
   /* 这些类独立挂到任何容器上都能生效，不依赖 .frame 复合选择器 */
   .grid-2-7-5{display:grid;grid-template-columns:7fr 5fr;gap:3vw 4vh;align-items:start}
   .grid-2-6-6{display:grid;grid-template-columns:1fr 1fr;gap:3vw 4vh;align-items:start}
@@ -395,7 +387,7 @@
   }
   /* grid-6 已在旧样式里定义为 3x2，这里仅补 align */
 
-  /* ---------- 图片 frame-img（layouts.md 主命名） ---------- */
+  /* ---------- 图片 frame-img ---------- */
   /* 在旧样式里已定义，这里补 img-cap 命名别名与增强 */
   figure.frame-img{margin:0;display:flex;flex-direction:column;min-width:0}
   .img-cap{
@@ -418,7 +410,7 @@
     opacity:.6;
   }
 
-  /* ---------- chrome & foot 补位（layouts.md 简单写法） ---------- */
+  /* ---------- chrome & foot 补位 ---------- */
   .chrome{font-family:var(--mono);font-size:max(11px,.78vw);letter-spacing:.2em;text-transform:uppercase;opacity:.62}
   .foot{font-family:var(--mono);font-size:max(11px,.78vw);letter-spacing:.18em;text-transform:uppercase;opacity:.5}
 
@@ -448,6 +440,50 @@
     .pipeline{grid-template-columns:repeat(2,1fr)}
     .grid-2-7-5,.grid-2-6-6,.grid-2-8-4{grid-template-columns:1fr}
   }
+
+  /* ============ 截图页 ============ */
+  .slide:has(.shot)::before{backdrop-filter:none!important}
+  .shot-split{display:grid;grid-template-columns:minmax(0,34fr) minmax(0,66fr);gap:4.5vw;align-items:center;flex:1;min-height:0}
+  .shot-text{display:flex;flex-direction:column;gap:2.6vh;min-width:0}
+  .shot-text .h-hero{font-family:var(--serif-en);font-weight:700;font-size:8.4vw;line-height:.92}
+  .shot-text .h-xl{font-size:4.4vw}
+  .shot-text .h-xl.ask{font-size:3.4vw;white-space:nowrap}
+  .shot-line{max-width:30vw}
+  .shot-text .lead{font-size:1.6vw}
+  .shot{margin:0;justify-self:center;min-width:0;border-radius:14px;overflow:hidden;border:1px solid rgba(127,127,127,.22);filter:drop-shadow(0 8px 14px rgba(0,0,0,.4))}
+  .slide.light .shot{border-color:rgba(var(--ink-rgb),.12);filter:drop-shadow(0 8px 14px rgba(var(--ink-rgb),.18))}
+  .shot img{display:block;width:100%;height:auto}
+  .shot.wide{width:100%;max-height:72vh}
+  .shot.wide img{max-height:72vh;object-fit:contain}
+  .shot.tall{height:72vh;aspect-ratio:960/1160;width:auto}
+  .shot.tall img{height:100%;width:100%;object-fit:cover;object-position:top center}
+  .plats{display:flex;gap:2.4vw;margin-top:1vh}
+  .plats .pl{display:flex;flex-direction:column;gap:.4vh;padding-top:1.2vh;border-top:1px solid rgba(127,127,127,.35);min-width:6.5vw}
+  .plats .pn{font-family:var(--serif-en);font-weight:700;font-size:max(18px,1.6vw)}
+  .plats .ps{font-family:var(--sans-zh);font-size:max(12px,.9vw);opacity:.7}
+  .release{align-self:flex-start;font-family:var(--mono);font-size:max(11px,.8vw);letter-spacing:.24em;padding:7px 14px;border:1px solid currentColor;opacity:.75}
+
+  /* ============ 手机：纵向滚动 ============ */
+  @media (max-width:760px){
+    html,body{height:auto;overflow-x:hidden;overflow-y:auto}
+    #deck{position:relative;inset:auto;width:100%!important;height:auto;flex-direction:column;transform:none!important;transition:none}
+    .slide{width:100%;flex:0 0 auto;height:auto;min-height:100svh;padding:7vh 6vw 8vh}
+    .slide.hero.dark::before{background:rgba(var(--ink-rgb),.35)}
+    .shot-split{grid-template-columns:1fr;gap:4vh;align-content:center}
+    .shot-text{gap:1.8vh}
+    .shot-text .h-hero{font-size:22vw}
+    .shot-text .h-xl{font-size:10vw}
+    .shot-text .lead{font-size:5vw}
+    .shot-line{max-width:none}
+    .shot.wide,.shot.wide img{max-height:none}
+    .shot.tall{height:auto;width:100%;aspect-ratio:960/1160}
+    .shot-text .h-xl.ask{font-size:8.6vw}
+    .plats{gap:6vw}
+    .plats .pl{min-width:0}
+    .foot{display:none}
+    #nav,#hint{display:none}
+    [data-anim]{opacity:1!important;transform:none!important}
+  }
 </style>
 </head>
 <body>
@@ -458,177 +494,100 @@
 
 <div id="deck">
 
-<!-- ============================================================
-     SLIDES 插入区 · 在此处填充所有 <section class="slide ..."> 页面
-     每页模板参考 references/page-patterns.md
-     页面组件参考 references/components.md
-     ============================================================ -->
-
 <section class="slide hero dark">
-  <div class="chrome">
-    <div>Cortex · 数字分身</div>
-    <div>01 / 03</div>
-  </div>
-  <div class="frame" style="display:grid; gap:4.5vh; align-content:center; min-height:78vh">
-    <div class="kicker" data-anim>SELF-EVOLVING DIGITAL TWIN</div>
-    <h1 class="h-hero" data-anim>Cortex</h1>
-    <h2 class="h-sub" data-anim>让 AI 套上你的皮，用你的眼睛看信息</h2>
-    <p class="lead" style="max-width:52vw" data-anim>
-      不是帮你整理消息的 AI 助手。是穿上你的价值观、你的立场、你的品味之后，替你判断哪些事值得你亲自看。
-    </p>
-    <div class="row" data-anim style="gap:3vw; flex-wrap:wrap; margin-top:2vh">
-      <div class="col" style="gap:.6vh">
-        <span class="mid-num" style="font-size:2.6vw">记忆层</span>
-        <span class="stat-note" style="font-size:.85vw">用我的视角先判断</span>
-      </div>
-      <div class="col" style="gap:.6vh">
-        <span class="mid-num" style="font-size:2.6vw">筛选层</span>
-        <span class="stat-note" style="font-size:.85vw">群聊信息中过滤噪音</span>
-      </div>
-      <div class="col" style="gap:.6vh">
-        <span class="mid-num" style="font-size:2.6vw">查询层</span>
-        <span class="stat-note" style="font-size:.85vw">替我检索派活和工具</span>
-      </div>
-      <div class="col" style="gap:.6vh">
-        <span class="mid-num" style="font-size:2.6vw">替身层</span>
-        <span class="stat-note" style="font-size:.85vw">按我的笔触写文章</span>
-      </div>
+  <div class="chrome"><div>Cortex · 数字分身</div><div>01 / 06</div></div>
+  <div class="frame shot-split">
+    <div class="shot-text">
+      <div class="kicker" data-anim>Your personal AI system</div>
+      <h1 class="h-hero" data-anim>Cortex</h1>
+      <p class="lead shot-line" data-anim>群聊、录音、链接、屏幕——它替你看完，告诉你今天先动哪一步。</p>
     </div>
+    <figure class="shot wide" data-anim>
+      <img src="assets/journey.webp" width="2000" height="943" alt="一段材料从进来到变成行动的过程" decoding="async" fetchpriority="high">
+    </figure>
   </div>
-  <div class="foot">
-    <div>Falcon · 导演 / 摄影指导 / AI 系统开发者</div>
-    <div>— Cortex —</div>
-  </div>
+  <div class="foot"><div></div><div>— Cortex —</div></div>
 </section>
 
 <section class="slide light">
-  <div class="chrome">
-    <div>Architecture · 怎么做到的</div>
-    <div>02 / 03</div>
-  </div>
-  <div class="frame" style="padding-top:2.5vh">
-    <div class="kicker" data-anim>双层 Agent 架构 + 四源数据闭环</div>
-    <h2 class="h-xl" data-anim>系统骨架</h2>
-
-    <div class="col" style="gap:3vh; margin-top:3vh">
-      <div data-anim>
-        <p class="lead" style="font-size:1.25vw; margin-bottom:1.5vh">四个数据源，形成完整记忆闭环</p>
-        <div class="row" style="gap:3vw; flex-wrap:wrap">
-          <div class="col" style="gap:.4vh">
-            <span class="mid-num" style="font-size:3vw">微信</span>
-            <span class="stat-label">社交 / 商业判断</span>
-          </div>
-          <div class="col" style="gap:.4vh">
-            <span class="mid-num" style="font-size:3vw">OpenCode</span>
-            <span class="stat-label">技术决策记录</span>
-          </div>
-          <div class="col" style="gap:.4vh">
-            <span class="mid-num" style="font-size:3vw">飞书</span>
-            <span class="stat-label">线下录音转录</span>
-          </div>
-          <div class="col" style="gap:.4vh">
-            <span class="mid-num" style="font-size:3vw">笔记</span>
-            <span class="stat-label">主动知识补充</span>
-          </div>
-        </div>
-      </div>
-
-      <div class="rule"></div>
-
-      <div data-anim>
-        <p class="lead" style="font-size:1.25vw; margin-bottom:1.5vh">双层 Agent — 数据管道与智能判断解耦</p>
-        <div class="row" style="gap:2.5vw; align-items:flex-start">
-          <div class="col" style="gap:1vh; flex:1">
-            <span class="mid-num" style="font-size:2.4vw">Python MCP</span>
-            <span class="stat-note" style="font-size:.9vw">底层统一接入微信聊天、AI 对话、语音转录。实时采集、解密、结构化。</span>
-          </div>
-          <span class="mid-num" style="font-size:2vw; opacity:.3">→</span>
-          <div class="col" style="gap:1vh; flex:1">
-            <span class="mid-num" style="font-size:2.4vw">Skill 协议</span>
-            <span class="stat-note" style="font-size:.9vw">上层调度大模型完成长链推理。多源筛选、跨对话聚合、优先级判断、立场校验。</span>
-          </div>
-        </div>
-      </div>
-
-      <div class="rule"></div>
-
-      <div data-anim>
-        <p class="lead" style="font-size:1.25vw; margin-bottom:1.5vh">四层能力栈</p>
-        <div class="row" style="gap:1.8vw">
-          <div class="col" style="gap:.4vh">
-            <span class="mid-num" style="font-size:2vw">记忆层</span>
-            <span class="stat-label">套皮判断</span>
-          </div>
-          <span style="opacity:.25">→</span>
-          <div class="col" style="gap:.4vh">
-            <span class="mid-num" style="font-size:2vw">筛选层</span>
-            <span class="stat-label">过滤噪音</span>
-          </div>
-          <span style="opacity:.25">→</span>
-          <div class="col" style="gap:.4vh">
-            <span class="mid-num" style="font-size:2vw">查询层</span>
-            <span class="stat-label">检索替答</span>
-          </div>
-          <span style="opacity:.25">→</span>
-          <div class="col" style="gap:.4vh">
-            <span class="mid-num" style="font-size:2vw">替身层</span>
-            <span class="stat-label">笔触写作</span>
-          </div>
-        </div>
-      </div>
+  <div class="chrome"><div>Cortex · 数字分身</div><div>02 / 06</div></div>
+  <div class="frame shot-split">
+    <div class="shot-text">
+      <div class="kicker" data-anim>Ask</div>
+      <h2 class="h-xl ask" data-anim>“我最近和林可<br>聊了啥？”</h2>
+      <p class="body-zh shot-line" data-anim>一句话，它翻完你们的聊天，按事情理好：做到哪了、欠什么、下一步。</p>
     </div>
+    <figure class="shot wide" data-anim>
+      <img src="assets/ask-contact.webp" width="2000" height="1250" alt="在对话里问最近和一位联系人聊了什么，Cortex 按事情整理出回答" decoding="async">
+    </figure>
   </div>
-  <div class="foot">
-    <div>Python MCP Server + LLM Skill Protocol · 全本地部署</div>
-    <div>— 02 —</div>
-  </div>
+  <div class="foot"><div></div><div>— Cortex —</div></div>
 </section>
 
-<section class="slide hero dark">
-  <div class="chrome">
-    <div>Memory · 核心创新</div>
-    <div>03 / 03</div>
-  </div>
-  <div class="frame" style="display:grid; gap:3.5vh; align-content:center; min-height:78vh">
-    <div class="kicker" data-anim>THE HARD PROBLEM</div>
-    <h2 class="h-xl" data-anim style="font-size:5vw">六层自演化记忆</h2>
-    <p class="lead" style="max-width:54vw" data-anim>
-      它不只是处理信息。它在每一次交互中重塑自己的判断基准。
-    </p>
-
-    <div class="row" data-anim style="gap:5vw; align-items:flex-start; flex-wrap:wrap; margin-top:2vh">
-      <div class="col" style="gap:1.8vh; max-width:24vw">
-        <div>
-          <span class="mid-num" style="font-size:3.5vw">事实候选</span>
-          <p class="stat-note" style="font-size:1vw; margin-top:.8vh">从每日行为中自动提取。你知道他上周见了谁、关心什么事。</p>
-        </div>
-        <div>
-          <span class="mid-num" style="font-size:3.5vw">立场漂移</span>
-          <p class="stat-note" style="font-size:1vw; margin-top:.8vh">捕捉你的观点变化。不是死记硬背，是跟随你演进。</p>
-        </div>
-      </div>
-      <div class="col" style="gap:1.8vh; max-width:24vw">
-        <div>
-          <span class="mid-num" style="font-size:3.5vw">认知盲区</span>
-          <p class="stat-note" style="font-size:1vw; margin-top:.8vh">发现你不知道自己不知道的事。持续校准判断精度。</p>
-        </div>
-        <div>
-          <span class="mid-num" style="font-size:3.5vw">纠偏日志</span>
-          <p class="stat-note" style="font-size:1vw; margin-top:.8vh">被拒绝的判断也写入反馈。错误也是资产，驱动下次更准。</p>
-        </div>
-      </div>
+<section class="slide dark">
+  <div class="chrome"><div>Cortex · 数字分身</div><div>03 / 06</div></div>
+  <div class="frame shot-split">
+    <div class="shot-text">
+      <div class="kicker" data-anim>Every morning</div>
+      <h2 class="h-xl" data-anim>早上第一眼</h2>
+      <p class="body-zh shot-line" data-anim>一张小卡：哪条死线最近、你又犯了哪个老毛病、今天先做什么。</p>
     </div>
-
-    <div class="rule" style="margin:1vh 0"></div>
-
-    <p class="lead" style="font-size:1.25vw; opacity:.75; max-width:56vw" data-anim>
-      未来方向：公众号选题判断、内容撰写（从 Falcon 真实体验出发）、小红书配图审查。数字分身直接替你学习和判断，你只管做只有你能做的事。
-    </p>
+    <figure class="shot wide" data-anim>
+      <img src="assets/today-daily-card.webp" width="2000" height="1147" alt="每日早扫卡与今日笔记" loading="lazy" decoding="async">
+    </figure>
   </div>
-  <div class="foot">
-    <div>人工审批写入 · 拒绝候选入纠偏日志 · 每轮交互重塑判断基准</div>
-    <div>— 03 —</div>
+  <div class="foot"><div></div><div>— Cortex —</div></div>
+</section>
+
+<section class="slide light">
+  <div class="chrome"><div>Cortex · 数字分身</div><div>04 / 06</div></div>
+  <div class="frame shot-split">
+    <div class="shot-text">
+      <div class="kicker" data-anim>Screen review</div>
+      <h2 class="h-xl" data-anim>这一天<br>去哪了</h2>
+      <p class="body-zh shot-line" data-anim>一天的屏幕压成一段复盘。画面只存在你自己的电脑上。</p>
+    </div>
+    <figure class="shot tall" data-anim>
+      <img src="assets/mockup-screen-day.webp" width="960" height="1160" alt="屏幕记录页：回放、时间轴与 AI 解读" loading="lazy" decoding="async">
+    </figure>
   </div>
+  <div class="foot"><div></div><div>— Cortex —</div></div>
+</section>
+
+<section class="slide dark">
+  <div class="chrome"><div>Cortex · 数字分身</div><div>05 / 06</div></div>
+  <div class="frame shot-split">
+    <div class="shot-text">
+      <div class="kicker" data-anim>Memory</div>
+      <h2 class="h-xl" data-anim>它记得你</h2>
+      <p class="body-zh shot-line" data-anim>你是谁、在忙什么、在乎谁。记错了，改一笔就好，你说了算。</p>
+    </div>
+    <figure class="shot wide" data-anim>
+      <img src="assets/mockup-memory.webp" width="960" height="630" alt="记忆页：四类记忆与人物发现" loading="lazy" decoding="async">
+    </figure>
+  </div>
+  <div class="foot"><div></div><div>— Cortex —</div></div>
+</section>
+
+<section class="slide light">
+  <div class="chrome"><div>Cortex · 数字分身</div><div>06 / 06</div></div>
+  <div class="frame shot-split">
+    <div class="shot-text">
+      <div class="kicker" data-anim>Everywhere</div>
+      <h2 class="h-xl" data-anim>在哪都能用</h2>
+      <p class="body-zh shot-line" data-anim>你的数据就是一个文件夹，拷走就是备份。</p>
+      <div class="plats" data-anim>
+        <div class="pl"><span class="pn">macOS</span><span class="ps">桌面版</span></div>
+        <div class="pl"><span class="pn">Linux</span><span class="ps">网页版</span></div>
+        <div class="pl"><span class="pn">iPhone</span><span class="ps">手机 App</span></div>
+      </div>
+      <div class="release" data-anim>尚未正式发布</div>
+    </div>
+    <figure class="shot wide" data-anim>
+      <img src="assets/desktop-mode.webp" width="2000" height="1250" alt="Cortex 桌面模式" loading="lazy" decoding="async">
+    </figure>
+  </div>
+  <div class="foot"><div></div><div>— Cortex —</div></div>
 </section>
 
 </div>
@@ -639,7 +598,6 @@
 /* =============== WebGL 双背景 ===============
    深色页：Holographic Dispersion（全息色散 · 钛金暗流）—— 彩虹微扰、鼠标径向涟漪
    浅色页：Spiral Vortex（旋转涡流 · 银色珍珠）—— domain-warp 流动、无中心
-   修改风格请参考 references/webgl-backgrounds.md
 */
 const VS = `attribute vec2 position;void main(){gl_Position=vec4(position,0.0,1.0);}`;
 
@@ -768,9 +726,12 @@ slides.forEach((s,i)=>{
   nav.appendChild(b);
 });
 
+const isMobile=()=>matchMedia('(max-width:760px)').matches;
+function warm(i){const s=slides[i];if(s)s.querySelectorAll('img[loading="lazy"]').forEach(im=>im.loading='eager');}
 function go(n){
   if(lock)return;
   idx=Math.max(0,Math.min(total-1,n));
+  warm(idx);warm(idx+1);
   deck.style.transform=`translateX(${-idx*100}vw)`;
   nav.querySelectorAll('.dot').forEach((d,i)=>d.classList.toggle('active',i===idx));
   /* 主题切换：优先读 data-theme，其次从 class（light/dark）推断 */
@@ -821,6 +782,7 @@ function toggleOverview(){
 }
 
 addEventListener('keydown',e=>{
+  if(isMobile())return;
   if(e.key==='Escape'){e.preventDefault();toggleOverview();return;}
   if(overviewOn)return;
   if(e.key==='ArrowRight'||e.key==='PageDown'||e.key===' '||e.key==='ArrowDown'){
@@ -835,6 +797,7 @@ addEventListener('keydown',e=>{
 
 let wheelTO=null,wheelAcc=0;
 addEventListener('wheel',e=>{
+  if(isMobile())return;
   wheelAcc+=e.deltaY+e.deltaX;
   if(Math.abs(wheelAcc)>50){
     if(wheelAcc>0 && window.__pipeAdvance && window.__pipeAdvance()){
@@ -849,6 +812,7 @@ addEventListener('wheel',e=>{
 let tx=0,ty=0;
 addEventListener('touchstart',e=>{tx=e.touches[0].clientX;ty=e.touches[0].clientY},{passive:true});
 addEventListener('touchend',e=>{
+  if(isMobile())return;
   const dx=(e.changedTouches[0].clientX-tx);
   const dy=(e.changedTouches[0].clientY-ty);
   if(Math.abs(dx)>50&&Math.abs(dx)>Math.abs(dy)){
@@ -858,9 +822,13 @@ addEventListener('touchend',e=>{
 },{passive:true});
 
 go(0);
+/* 手机纵向滚动：按当前可见页切换背景明暗 */
+const io=new IntersectionObserver(es=>{
+  if(!isMobile())return;
+  es.forEach(en=>{if(en.isIntersecting){const s=en.target;document.body.classList.toggle('light-bg',s.classList.contains('light'));}});
+},{threshold:.5});
+slides.forEach(s=>io.observe(s));
 </script>
-<script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
-<script>lucide.createIcons();</script>
 
 <!-- ============ Motion One 动效引擎（本地优先,CDN 兜底） ============
      加载策略:先 ./assets/motion.min.js(本地,离线可用),失败 fallback 到 jsDelivr CDN
